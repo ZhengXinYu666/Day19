@@ -1,0 +1,37 @@
+package Exception;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 在try里面发现问题后，JVM会帮我们生成一个异常对象
+ * 然后把这个对象进行抛出，和catch里面的类进行匹配
+ * 如果该对象是某个类型的，就会执行该catch里面的处理信息
+ *
+ * 异常重要的几个方法：
+ *      getMessage()：获取异常信息，返回字符串
+ *
+ *      toString()：获取异常类名和异常信息，返回字符串
+ *          此对象的类的name（全路径名）
+ *          "： "(冒号和一个空格)
+ *          调用此对象getLocalizedMessage()方法的结果  （默认返回的是getMessage()的内容）
+ *
+ *      printStackTrace():获取异常类名和异常信息，以及异常出现在程序中的位置。返回值void。把信息输出到控制台
+ *
+ *      printStackTrace(PrintStream s)：通常用该方法将异常内容保存在日志文件中，以便于查阅
+ */
+public class ExceptionDemo5 {
+    public static void main(String[] args) {
+        String s = "2014-11-20";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date d = sdf.parse(s);//创建了一个ParseException对象，然后抛出去，和catch里面进行匹配
+            System.out.println(d);
+        }catch (ParseException e){//ParseException e = new ParseException();
+            //ParseException
+            e.printStackTrace();
+            //跳转到某个指定的页面（index.html）
+        }
+        System.out.println("over");
+    }
+}
